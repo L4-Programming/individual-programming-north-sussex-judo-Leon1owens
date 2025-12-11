@@ -35,6 +35,7 @@ if (!form) {
       currentWeight,
       competitionsEntered,
       privateCoachingHours,
+      trainingPlan,
     });
   });
 }
