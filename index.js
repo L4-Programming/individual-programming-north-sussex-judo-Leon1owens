@@ -11,6 +11,8 @@ if (!form) {
       "#competitions-entered"
     ).value;
 
+    let trainingPlan = document.querySelector("#training-plan").value;
+
     let privateCoachingHours = document.querySelector(
       "#private-coaching-hours"
     ).value;
