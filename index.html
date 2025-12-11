@@ -18,42 +18,13 @@
           <input type="text" id="athlete-name" name="athlete-name" required />
 
           <div class="training-plan-wrapper" role="radiogroup">
-            <label>Training Plan</label>
-            <div class="radio-button-field">
-              <input
-                type="radio"
-                id="beginner"
-                name="training-plan"
-                value="beginner"
-                required
-                checked
-              />
-              <label for="beginner">Beginner - 2 sessions p/wk</label>
+            <label for="training-plan" class="form-label"></label>Training Plan</label>
+            <select class="form-field">
+              <option value="beginner">Beginner - 2 sessions p/wk</option>
+              <option value="intermediate">Intermediate - 3 sessions p/wk</option>
+              <option value="elite">Elite - 5 sessions p/wk</option>
+            </select>
             </div>
-
-            <div class="radio-button-field">
-              <input
-                type="radio"
-                id="intermediate"
-                name="training-plan"
-                value="intermediate"
-                required
-              />
-              <label for="intermediate">Intermediate - 3 sessions p/wk</label>
-            </div>
-
-            <div class="radio-button-field">
-              <input
-                type="radio"
-                id="elite"
-                name="training-plan"
-                value="elite"
-                required
-              />
-              <label for="elite">Elite - 5 sessions p/wk</label>
-            </div>
-          </div>
-
           <div>
             <label for="current-weight">Current Weight (kg)</label>
             <input type="number" id="current-weight" name="current-weight" />

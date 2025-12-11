@@ -15,12 +15,24 @@ if (!form) {
       "#private-coaching-hours"
     ).value;
 
-    let currentWeight = document.querySelector("#current-weight").value;
-    console.log(
+    let currentWeight = parseInt(
+      document.querySelector("#current-weight").value
+    );
+
+    if (athleteName === "") {
+      alert("Athlete Name is required");
+      return;
+    }
+    if (isNaN(currentWeight) || currentWeight <= 1) {
+      alert("Current Weight is required");
+      return;
+    }
+
+    console.log({
       athleteName,
       currentWeight,
       competitionsEntered,
-      privateCoachingHours
-    );
+      privateCoachingHours,
+    });
   });
 }
