@@ -4,6 +4,17 @@ import { calculateCosts } from "./calculateCosts.js";
 const MIN_WEIGHT = 50;
 const MAX_WEIGHT = 150;
 
+// simple weight class function (adjust ranges/names as needed)
+function getWeightClass(weight) {
+  if (isNaN(weight)) return "N/A";
+  if (weight <= 66) return "Flyweight";
+  if (weight <= 73) return "Lightweight";
+  if (weight <= 81) return "Light-Middleweight";
+  if (weight <= 90) return "Middleweight";
+  if (weight <= 100) return "Light-Heavyweight";
+  return "Heavyweight";
+}
+
 let form = document.querySelector("#form");
 
 if (!form) {
@@ -88,8 +99,35 @@ if (!form) {
 
     const costs = calculateCosts(data);
 
-    const outputText = `Athlete: ${athleteName}\nTraining Cost: £${costs.trainingCost}\nCoaching Cost: £${costs.coachingCost}\nTotal Cost: £${costs.totalCost}`;
-    document.querySelector("#output").textContent = outputText;
+    // determine weight class and display separate fields
+    const weightClass = getWeightClass(currentWeight);
+    data.weightClass = weightClass;
+
+    const nameEl = document.querySelector("#athlete-name-output");
+    const weightEl = document.querySelector("#current-weight-output");
+    const weightClassEl = document.querySelector("#weight-class-output");
+    const trainingCostEl = document.querySelector("#training-cost-output");
+    const coachingCostEl = document.querySelector("#coaching-cost-output");
+    const competitionsEnteredEl = document.querySelector(
+      "#competitions-entered-output"
+    );
+    const totalCostEl = document.querySelector("#total-cost-output");
+    const messageEl = document.querySelector("#output");
+
+    if (nameEl) nameEl.textContent = `Athlete: ${athleteName || "N/A"}`;
+    if (weightEl)
+      weightEl.textContent = isNaN(currentWeight)
+        ? "Current Weight: N/A"
+        : `Current Weight: ${currentWeight} kg`;
+    if (weightClassEl)
+      weightClassEl.textContent = `Weight Class: ${weightClass}`;
+    if (trainingCostEl)
+      trainingCostEl.textContent = `Training Cost: £${costs.trainingCost}`;
+    if (coachingCostEl)
+      coachingCostEl.textContent = `Coaching Cost: £${costs.coachingCost}`;
+    if (totalCostEl)
+      totalCostEl.textContent = `Total Cost: £${costs.totalCost}`;
+    if (messageEl) messageEl.textContent = "Calculation complete.";
 
     console.log({ errors });
     console.log(data);
