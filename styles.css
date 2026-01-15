@@ -13,6 +13,7 @@
   --white: #ffffff;
   --error-bkg: rgb(255, 241, 241);
   --error-placeholder: rgb(255, 157, 157);
+  --error-label-text: rgb(136, 0, 0);
 }
 
 /*
@@ -234,7 +235,7 @@ button:active {
   background-color: var(--sky-600);
   color: var(--sky-50);
 }
-error-input {
+.error-input {
   background-color: var(--error-bkg);
   color: var(--brand-dark);
   border-color: var(--brand-dark);
@@ -243,5 +244,5 @@ error-input {
   color: var(--error-placeholder);
 }
 .error-label {
-  color: var(--brand-dark);
+  color: var(--error-label-text);
 }

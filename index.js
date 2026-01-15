@@ -1,7 +1,11 @@
 /* Refer to the README.md for instructions on what you need to do in this project */
-import { calculateCosts } from './calculateCosts.js';
+import { calculateCosts } from "./calculateCosts.js";
+
+const MIN_WEIGHT = 50;
+const MAX_WEIGHT = 150;
 
 let form = document.querySelector("#form");
+
 if (!form) {
   console.error("Form not found");
 } else {
@@ -10,13 +14,13 @@ if (!form) {
 
     let errors = {};
 
-  // Helper function to add error messages
-  function addError(field, message) {
-    if (!errors[field]) {
-      errors[field] = { messages: [] };
+    // Helper function to add error messages
+    function addError(field, message) {
+      if (!errors[field]) {
+        errors[field] = { messages: [] };
+      }
+      errors[field].messages.push(message);
     }
-    errors[field].messages.push(message);
-  }
 
     let athleteName = document.querySelector("#athlete-name").value;
 
@@ -30,20 +34,28 @@ if (!form) {
       "#private-coaching-hours"
     ).value;
 
-    let currentWeight = parseInt(
-      document.querySelector("#current-weight").value
-    );
+    let currentWeightInput = document.querySelector("#current-weight");
+    let currentWeight = parseFloat(currentWeightInput.value);
 
     if (athleteName === "") {
-    addError("athlete-name", "Please enter your name.");
+      addError("athlete-name", "Please enter your name.");
     }
-    if (isNaN(currentWeight) || currentWeight <= 1) {
-    addError("current-weight", "Please enter a valid weight.");
+    if (isNaN(currentWeight)) {
+      addError("current-weight", "Please enter a valid weight.");
+    } else if (currentWeight < MIN_WEIGHT || currentWeight > MAX_WEIGHT) {
+      addError(
+        "current-weight",
+        `Please enter a weight between ${MIN_WEIGHT} kg and ${MAX_WEIGHT} kg.`
+      );
     }
 
     // Clear previous errors
-    document.querySelectorAll('.error-input').forEach(el => el.classList.remove('error-input'));
-    document.querySelectorAll('.error-label').forEach(el => el.classList.remove('error-label'));
+    document
+      .querySelectorAll(".error-input")
+      .forEach((el) => el.classList.remove("error-input"));
+    document
+      .querySelectorAll(".error-label")
+      .forEach((el) => el.classList.remove("error-label"));
 
     if (Object.keys(errors).length > 0) {
       // Display errors
@@ -57,7 +69,8 @@ if (!form) {
           labelElement.classList.add("error-label");
         }
       }
-      document.querySelector("#output").textContent = "Please correct the errors above.";
+      document.querySelector("#output").textContent =
+        "Please correct the errors highlighted in red.";
       return;
     }
 
