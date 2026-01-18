@@ -11,6 +11,9 @@
   --slate-500: #64748b;
   --slate-300: #cbd5e1;
   --white: #ffffff;
+  --error-bkg: rgb(255, 241, 241);
+  --error-placeholder: rgb(255, 157, 157);
+  --error-label-text: rgb(136, 0, 0);
 }
 
 /*
@@ -231,4 +234,15 @@ button:active {
 .radio-button-field input:checked + label {
   background-color: var(--sky-600);
   color: var(--sky-50);
+}
+.error-input {
+  background-color: var(--error-bkg);
+  color: var(--brand-dark);
+  border-color: var(--brand-dark);
+}
+.error-input::placeholder {
+  color: var(--error-placeholder);
+}
+.error-label {
+  color: var(--error-label-text);
 }

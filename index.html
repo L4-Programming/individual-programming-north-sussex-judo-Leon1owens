@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>North Sussex Judo</title>
-  </head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>North Sussex Judo</title>
+  <link rel="stylesheet" href="./styles.css" />
 
   <body>
     <h1>North Sussex Judo</h1>
@@ -16,54 +15,54 @@
 
         <div class="inputs-wrapper">
           <label for="athlete-name">Athlete Name</label>
-          <input type="text" id="athlete-name" name="athlete-name" required />
+          <input type="text" id="athlete-name" name="athlete-name" />
 
-          <div class="training-plan-wrapper" role="radiogroup">
-            <label>Training Plan</label>
-            <div class="radio-button-field">
-              <input
-                type="radio"
-                name="training-plan"
-                value="beginner"
-                required
-                checked
-              />
-              <label for="beginner">Beginner - 2 sessions p/wk</label>
-            </div>
-
-            <div class="radio-button-field">
-              <input
-                type="radio"
-                name="training-plan"
-                value="intermediate"
-                required
-              />
-              <label for="intermediate">Intermediate - 3 sessions p/wk</label>
-            </div>
-
-            <div class="radio-button-field">
-              <input type="radio" name="training-plan" value="elite" required />
-              <label for="elite">Elite - 5 sessions p/wk</label>
-            </div>
+          <div class="training-plan-wrapper">
+            <label for="training-plan" class="form-label">Training Plan</label>
+            <select id="training-plan" class="form-field">
+              <option value="beginner">Beginner - 2 sessions p/wk</option>
+              <option value="intermediate">
+                Intermediate - 3 sessions p/wk
+              </option>
+              <option value="elite">Elite - 5 sessions p/wk</option>
+            </select>
           </div>
-
           <div>
             <label for="current-weight">Current Weight (kg)</label>
-            <input type="number" id="current-weight" name="current-weight" />
+            <input
+              type="number"
+              id="current-weight"
+              name="current-weight"
+              min="50"
+              max="150"
+              step="0.5"
+            />
           </div>
 
           <div>
             <label for="competitions-entered"
               >Number of Competitions Entered this Month (Optional)</label
             >
-            <input type="number" name="competitions-entered" />
+            <input
+              type="number"
+              id="competitions-entered"
+              name="competitions-entered"
+              min="0"
+              max="10"
+            />
           </div>
 
           <div>
             <label for="private-coaching-hours"
               >Number of Hours of Private Coaching (Optional)</label
             >
-            <input type="number" name="private-coaching-hours" />
+            <input
+              type="number"
+              id="private-coaching-hours"
+              name="private-coaching-hours"
+              min="0"
+              max="20"
+            />
           </div>
 
           <div>
@@ -75,11 +74,32 @@
       <div class="athlete-info">
         <h2>Athlete Information</h2>
         <hr />
-
         <div class="outputs-wrapper">
-          <div id="output" class="output-field">Awaiting Input...</div>
+          <div id="athlete-name-output" class="output-field">
+            Athlete Name: Awaiting Input...
+          </div>
+          <div id="current-weight-output" class="output-field">
+            Current Weight: Awaiting Input...
+          </div>
+          <div id="weight-class-output" class="output-field">
+            Weight Class: Awaiting Input...
+          </div>
+          <div id="training-cost-output" class="output-field">
+            Training Cost: £0.00
+          </div>
+          <div id="coaching-cost-output" class="output-field">
+            Coaching Cost: £0.00
+          </div>
+          <div id="competitions-entered-output" class="output-field">
+            Competitions Entered: Awaiting Input...
+          </div>
+          <div id="total-cost-output" class="output-field">
+            Total Cost: £0.00
         </div>
       </div>
     </div>
+
+    <!-- load your script here so the DOM exists when it runs -->
+    <script type="module" src="./index.js"></script>
   </body>
 </html>
