@@ -20,6 +20,24 @@ let form = document.querySelector("#form");
 if (!form) {
   console.error("Form not found");
 } else {
+  // Function to handle training plan change
+  function handleTrainingPlanChange() {
+    let trainingPlan = document.querySelector("#training-plan").value;
+    let competitionsInput = document.querySelector("#competitions-entered");
+    if (trainingPlan === "beginner") {
+      competitionsInput.disabled = true;
+      competitionsInput.value = "";
+    } else {
+      competitionsInput.disabled = false;
+    }
+  }
+
+  // Add change listener to training plan
+  document.querySelector("#training-plan").addEventListener("change", handleTrainingPlanChange);
+
+  // Call on load to set initial state
+  handleTrainingPlanChange();
+
   form.addEventListener("submit", function (event) {
     event.preventDefault();
 
@@ -89,6 +107,31 @@ if (!form) {
     let competitionsEnteredNum = parseFloat(competitionsEntered) || 0;
     let privateCoachingHoursNum = parseFloat(privateCoachingHours) || 0;
 
+    // Validate maximums
+    if (competitionsEnteredNum > 10) {
+      addError("competitions-entered", "Maximum 10 competitions allowed.");
+    }
+    if (privateCoachingHoursNum > 20) {
+      addError("private-coaching-hours", "Maximum 20 hours of private coaching allowed.");
+    }
+
+    if (Object.keys(errors).length > 0) {
+      // Display errors
+      for (let field in errors) {
+        let inputElement = document.querySelector(`#${field}`);
+        let labelElement = document.querySelector(`label[for=${field}]`);
+        if (inputElement) {
+          inputElement.classList.add("error-input");
+        }
+        if (labelElement) {
+          labelElement.classList.add("error-label");
+        }
+      }
+      document.querySelector("#output").textContent =
+        "Please correct the errors highlighted in red.";
+      return;
+    }
+
     const data = {
       athleteName,
       currentWeight,
@@ -125,6 +168,8 @@ if (!form) {
       trainingCostEl.textContent = `Training Cost: £${costs.trainingCost}`;
     if (coachingCostEl)
       coachingCostEl.textContent = `Coaching Cost: £${costs.coachingCost}`;
+    if (competitionsEnteredEl)
+      competitionsEnteredEl.textContent = `Competitions Entered: ${competitionsEnteredNum}`;
     if (totalCostEl)
       totalCostEl.textContent = `Total Cost: £${costs.totalCost}`;
     if (messageEl) messageEl.textContent = "Calculation complete.";

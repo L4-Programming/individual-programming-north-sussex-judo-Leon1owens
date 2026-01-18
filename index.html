@@ -47,6 +47,8 @@
               type="number"
               id="competitions-entered"
               name="competitions-entered"
+              min="0"
+              max="10"
             />
           </div>
 
@@ -58,6 +60,8 @@
               type="number"
               id="private-coaching-hours"
               name="private-coaching-hours"
+              min="0"
+              max="20"
             />
           </div>
 
@@ -70,10 +74,9 @@
       <div class="athlete-info">
         <h2>Athlete Information</h2>
         <hr />
-
         <div class="outputs-wrapper">
-          <div id="athlete-name-output" class="output-field"></div>
-            Athlete: Awaiting Input...
+          <div id="athlete-name-output" class="output-field">
+            Athlete Name: Awaiting Input...
           </div>
           <div id="current-weight-output" class="output-field">
             Current Weight: Awaiting Input...
@@ -92,8 +95,6 @@
           </div>
           <div id="total-cost-output" class="output-field">
             Total Cost: £0.00
-          </div>
-          <div id="output" class="output-field">Awaiting Input...</div>
         </div>
       </div>
     </div>
